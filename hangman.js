@@ -1,10 +1,11 @@
 var solution = "bez pracy nie ma kolaczy";
 
+solution = solution.toUpperCase();
 var amountOfLetters = solution.length;
 
 var hiddenSolution = "";
 //split na koniec
-for(i = 0; i<=amountOfLetters; i++){
+for(i = 0; i<amountOfLetters; i++){
 	solution.charAt(i)==" "? hiddenSolution += " " : hiddenSolution += "-";
 }
 
@@ -15,60 +16,51 @@ function write_password()
 
 window.onload = start;
 
-var letters = new Array (35);
-
-letters[0] = "A";
-letters[1] = "Ą";
-letters[2] = "B";
-letters[3] = "C";
-letters[4] = "Ć";
-letters[5] = "D";
-letters[6] = "E";
-letters[7] = "Ę";
-letters[8] = "F";
-letters[9] = "G";
-letters[10] = "H";
-letters[11] = "I";
-letters[12] = "J";
-letters[13] = "K";
-letters[14] = "L";
-letters[15] = "Ł";
-letters[16] = "M";
-letters[17] = "N";
-letters[18] = "Ń";
-letters[19] = "O";
-letters[20] = "Ó";
-letters[21] = "P";
-letters[22] = "Q";
-letters[23] = "R";
-letters[24] = "S";
-letters[25] = "Ś";
-letters[26] = "T";
-letters[27] = "U";
-letters[28] = "V";
-letters[29] = "W";
-letters[30] = "X";
-letters[31] = "Y";
-letters[32] = "Z";
-letters[33] = "Ź";
-letters[34] = "Ż";
-
-
+var letters = ["A","Ą","B", "C", "Ć","D", "E", "Ę", "F", "G", "H", "I", "J", "K", "L", "Ł", "M", "N","Ń", "O","Ó", "P","Q","R", "S","Ś", "T", "U", "V","W", "X", "Y", "Z", "Ź", "Ż"];
 
 function start() {
 
 	var alphabetGrid ="";
 
-
-
-	for (i = 0; i < 35; i++){
-		alphabetGrid += '<section class="letter">'+letters[i]+'</section>';
+	for (i = 0; i < 34; i++){
+		var dig = "number"+i;
+		alphabetGrid += '<section class="letter" onclick="check('+i+')" id="'+dig+'">'+letters[i]+'</section>';
 	}
 
 	document.getElementById("alphabet").innerHTML=alphabetGrid;
 	write_password();
 }
 
+function check(num){
+var guess = false;
 
+for(i=0; i<amountOfLetters; i++){
+	if(solution.charAt(i)==letters[num]){
+		hiddenSolution = hiddenSolution.reveal(i, letters[num]);
+		guess=true
+	}
+}
+if(guess==true){
+	var dig = "number"+num;
+	document.getElementById(dig).style.border= "3px solid green";
+	document.getElementById(dig).style.color= "green";
+	document.getElementById(dig).style.cursor= "default";
+	write_password();
+}
+else{
+	var dig = "number"+num;
+	document.getElementById(dig).style.border= "3px solid red";
+	document.getElementById(dig).style.color= "red";
+	document.getElementById(dig).style.cursor= "default";
+}
+}
 
+String.prototype.reveal = function(position, revelead){
+	if(position > this.length-1){
+	return this.toString();
+}
+	else{
+	return this.substr(0, position) + revelead + this.substr(position + 1);
+	}
+}
 
