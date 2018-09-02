@@ -1,6 +1,8 @@
 # Hangman JavaScript Game
 Simple project being a recap of basic string manipulation with JavaScript. 
 
+##[Play now!](https://namelessunknown.github.io/TheHangmanGame/)
+
 ## Files
 Game has few media types like audio and images. Main audio wind is played continuosly while crow call is called once player miss the right letter. Images - 11 - are sprites, and they are swapped together with incrementing amount of fails made by player. 
 
