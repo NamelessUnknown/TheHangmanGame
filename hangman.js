@@ -38,7 +38,7 @@ function start() {
 	document.getElementById("alphabet").innerHTML=alphabetGrid;
 	write_password();
 	wind.loop=true;
-	wind.play()
+	//wind.play()
 }
 
 function check(num){
